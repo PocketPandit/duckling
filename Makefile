@@ -13,3 +13,6 @@ server:
 
 server-down:
 	docker compose down
+
+parse:
+	curl "http://localhost:8050/parse" -H "Content-Type:application/x-www-form-urlencoded" --data 'text=$(text)'
