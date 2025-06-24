@@ -2,6 +2,8 @@ FROM haskell:8-buster AS builder
 
 RUN apt-get update -qq && \
   apt-get install -qq -y libpcre3 libpcre3-dev build-essential pkg-config --fix-missing --no-install-recommends && \
+  apt-get install -y curl gnupg && \
+  curl -sSL https://get.haskellstack.org/ | sh && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -11,7 +13,7 @@ WORKDIR /duckling
 
 ADD . .
 
-ENV LANG=C.UTF-8
+ENV LANG C.UTF-8
 
 RUN stack setup
 

@@ -1,0 +1,14 @@
+services:
+  duckling-server:
+    platform: linux/arm64
+    image: duckling:arm64
+    build:
+        context: .
+        dockerfile: Dockerfile
+        network: host
+    container_name: duckling_server
+    expose:
+      - 8050
+    ports:
+      - 8050:8050
+    command: ["duckling-example-exe", "-p", "8050"]
